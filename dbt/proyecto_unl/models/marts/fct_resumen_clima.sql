@@ -1,11 +1,6 @@
 {{ config(materialized='table') }}
-
 {% set climas = ['Soleado', 'Nublado', 'Caluroso', 'Lluvia'] %}
-
-WITH staging AS (
-    SELECT * FROM {{ ref('stg_clima') }}
-)
-
+WITH staging AS (SELECT * FROM {{ ref('stg_clima') }})
 SELECT 
     nombre_ciudad,
     {{ celsius_a_fahrenheit('temp_celsius') }} AS temp_fahrenheit,
